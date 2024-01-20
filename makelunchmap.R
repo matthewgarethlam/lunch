@@ -62,7 +62,7 @@ mypal2 = c("#009392","#39b185","#9ccb86","#e9e29c","#eeb479","#e88471","#cf597e"
 
 map <- tm_basemap(leaflet::providers$OpenStreetMap) +
 tm_shape(walk_iso)+tm_polygons("walk_time_mins", palette=mypal, alpha=0.4, lwd=0.05,popup.vars=c("Walk Time (Mins)" = "walk_time_mins"), title="Walk Time (Mins)")+
-tm_shape(restaurant_points)+tm_dots(col="Total.Score", size=9, palette = "RdYlGn",  style="pretty",
+tm_shape(restaurant_points)+tm_dots(col="Total.Score", size=0.15, palette = "RdYlGn",  style="pretty",
                                                                                                 popup.vars=c("Total Score"="Total.Score", 
                                                                                                 "Taste"="Taste", 
                                                                                                 "Variety"="Variety",
