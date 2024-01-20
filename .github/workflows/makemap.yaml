@@ -15,7 +15,7 @@ jobs:
           packages: |
             any::tidyverse 
             any::osmdata
-            4.1.1::osrm
+            any::osrm
             any::sf
             any::tmap
             any::tidygeocoder
