@@ -72,7 +72,7 @@ tm_shape(restaurant_points)+tm_dots(col="Total.Score", size=0.15, palette = "RdY
   tm_shape(office_point) + tm_markers()
 
 
-tmap_save(map, "docs/index.html")
+tmap_save(map, "index.html")
 
 
 
