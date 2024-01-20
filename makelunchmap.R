@@ -6,7 +6,6 @@ library(sf)
 library(tmap)
 tmap_mode("view")
 tmap_options(check.and.fix = TRUE) 
-library(tidygeocoder)
 library(leaflet)
 
 
