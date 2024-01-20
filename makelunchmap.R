@@ -64,11 +64,11 @@ map <- tm_basemap(leaflet::providers$OpenStreetMap) +
 tm_shape(walk_iso)+tm_polygons("walk_time_mins", palette=mypal, alpha=0.4, lwd=0.05,popup.vars=c("Walk Time (Mins)" = "walk_time_mins"), title="Walk Time (Mins)")+
 tm_shape(restaurant_points)+tm_dots(col="Total.Score", size=0.15, palette = "RdYlGn",  style="pretty",
                                                                                                 popup.vars=c("Total Score"="Total.Score", 
-                                                                                                "Taste"="Taste", 
-                                                                                                "Variety"="Variety",
-                                                                                                "Cost" = "Cost",
-                                                                                                "Distance" = "Distance",
-                                                                                                "Customer Service" = "Customer.Service"), title="Total Score")+
+                                                                                                "Avg Taste"="Taste", 
+                                                                                                "Avg Variety"="Variety",
+                                                                                                "Avg Cost" = "Cost",
+                                                                                                "Avg Distance" = "Distance",
+                                                                                                "Avg Customer Service" = "Customer.Service"), title="Average Total Score")+
   tm_shape(office_point) + tm_markers()
 
 
