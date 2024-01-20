@@ -3,7 +3,7 @@ on:
     branches: main
 
 jobs:
-  import-data:
+  update-map:
     runs-on: ubuntu-latest
     steps:
       - name: Set up R
@@ -15,7 +15,7 @@ jobs:
           packages: |
             any::tidyverse 
             any::osmdata
-            any::osrm
+            4.1.1::osrm
             any::sf
             any::tmap
             any::tidygeocoder
@@ -32,5 +32,5 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add index.html
-          git commit -m 'Data updated' || echo "No changes to commit"
+          git commit -m 'map updated' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

@@ -1,9 +1,10 @@
-library(osmdata)
+# library(osmdata)
 library(tidyverse)
 library(osrm)
 library(sf)
 library(tmap)
 tmap_mode("view")
+tmap_options(check.and.fix = TRUE) 
 library(tidygeocoder)
 library(leaflet)
 
@@ -24,10 +25,11 @@ office_point <- office_coords %>% st_as_sf(coords = c( "longitude", "latitude"))
 
 
 #calculate walkability
-walk_iso <- osrmIsochrone(loc=c(office_coords$longitude, office_coords$latitude),breaks=c(0,2,4,6,8,10), osrm.profile = "foot")
-walk_iso<- walk_iso %>% rowwise() %>% mutate(walk_time_mins = paste0(as.character(min),"-",as.character(max))) 
+walk_iso <- osrmIsochrone(loc=c(office_coords$longitude, office_coords$latitude),breaks=c(0,2,4,6,8,10), osrm.profile = "foot") %>% st_make_valid()
+walk_iso<- walk_iso %>% rowwise() %>% mutate(walk_time_mins = paste0(as.character(isomin),"-",as.character(isomax))) 
 walk_iso$walk_time_mins <- factor(walk_iso$walk_time_mins, levels=c("0-2","2-4", "4-6","6-8", "8-10"))
 walk_iso$id <- walk_iso$walk_time_mins
+
 
 
 #pull osm data
@@ -65,8 +67,8 @@ mypal2 = c("#009392","#39b185","#9ccb86","#e9e29c","#eeb479","#e88471","#cf597e"
 
 
 
-map <- tm_basemap(leaflet::providers$CartoDB) +
-tm_shape(walk_iso)+tm_polygons("walk_time_mins", palette=mypal, alpha=0.4, lwd=0.05,popup.vars=c("Walk Time (Mins)" = "walk_time_mins"), title="Walk Time (Mins)")+
+map <- tm_basemap(leaflet::providers$CartoDB.Positron) +
+tm_shape(walk_iso)+tm_polygons("walk_time_mins", palette=mypal, alpha=0.5, lwd=0.05,popup.vars=c("Walk Time (Mins)" = "walk_time_mins"), title="Walk Time (Mins)")+
 tm_shape(restaurant_points)+tm_dots(col="Total.Score", size=0.15, palette = "RdYlGn",  style="pretty",
                                                                                                 popup.vars=c("Total Score"="Total.Score", 
                                                                                                 "Taste"="Taste", 
