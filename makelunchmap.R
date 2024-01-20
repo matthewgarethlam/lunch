@@ -12,15 +12,7 @@ library(leaflet)
 
 
 #office address
-office_address <- tibble::tribble(
-  ~name,                  ~addr,
-  "10 Livery Street",          "10 Livery Street, Birmingham, UK "
-)
-
-
-office_coords <- office_address %>% geocode(addr,method = 'osm', lat = latitude , long = longitude)
-office_coords
-
+office_coords <- data.frame("Office"="10 Livery Street", "longitude"=-1.899325, "latitude"=52.48252)
 office_point <- office_coords %>% st_as_sf(coords = c( "longitude", "latitude"))
 
 
@@ -69,7 +61,7 @@ mypal2 = c("#009392","#39b185","#9ccb86","#e9e29c","#eeb479","#e88471","#cf597e"
 
 
 map <- tm_basemap(leaflet::providers$OpenStreetMap) +
-tm_shape(walk_iso)+tm_polygons("walk_time_mins", palette=mypal, alpha=0.5, lwd=0.05,popup.vars=c("Walk Time (Mins)" = "walk_time_mins"), title="Walk Time (Mins)")+
+tm_shape(walk_iso)+tm_polygons("walk_time_mins", palette=mypal, alpha=0.4, lwd=0.05,popup.vars=c("Walk Time (Mins)" = "walk_time_mins"), title="Walk Time (Mins)")+
 tm_shape(restaurant_points)+tm_dots(col="Total.Score", size=0.15, palette = "RdYlGn",  style="pretty",
                                                                                                 popup.vars=c("Total Score"="Total.Score", 
                                                                                                 "Taste"="Taste", 
@@ -80,7 +72,7 @@ tm_shape(restaurant_points)+tm_dots(col="Total.Score", size=0.15, palette = "RdY
   tm_shape(office_point) + tm_markers()
 
 
-tmap_save(map, "index.html")
+tmap_save(map, "docs/index.html")
 
 
 

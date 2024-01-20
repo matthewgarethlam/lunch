@@ -13,12 +13,11 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
-            any::tidyverse 
-            any::osmdata
+            any::dplyr
+            any::tibble
             any::osrm
             any::sf
             any::tmap
-            any::tidygeocoder
             any::leaflet
 
       - name: Check out repository
