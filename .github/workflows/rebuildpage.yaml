@@ -8,6 +8,9 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        
       - name: Trigger GitHub pages rebuild
         run: |
           git commit -m 'rebuild pages' --allow-empty
