@@ -1,6 +1,8 @@
 on:
-  push:
-    branches: main
+  schedule: 
+  - cron: 0 0 * * * #at the end of every day
+  # push:
+  #   branches: main
 
 jobs:
   update-map:
@@ -31,6 +33,5 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add docs/index.html
-          git commit -m 'rebuild pages' --allow-empty
           git commit -m 'map updated' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
