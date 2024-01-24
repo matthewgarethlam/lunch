@@ -4,7 +4,7 @@ In the Brum office, the grads have "New Foods Friday", where we go and try out l
 ## Technical details
 Written in R, uses ```tmap```, published via GitHub Pages. Site ```index.html``` (i.e., the map) is found in ```/docs```. The file ```makemap.yaml```re-runs the R Script on push to the main branch, and the Github site will update after map has been output. 
 
-## Maintenece
+## Maintenance
 New data should go in ```data.csv```. Push changes to main branch and the GH action workflow will be run. 
 
 NB: 
